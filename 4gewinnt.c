@@ -14,8 +14,7 @@ void feld_ausgabe();
 
 int main(){
 	setzen(1, s1);
-	setzen(1, s1);
-	setzen(0, s1);
+	setzen(2, s1);
 	setzen(3, s1);
 	setzen(4, s1);
 	feld_ausgabe();
@@ -44,10 +43,10 @@ int gewonnen(unsigned int spieler){
 	for(int x = 0; x < X; x++){		
 		int count = 0;	
 		for(int y = 0; y < Y; y++){
-			printf("[%i, %i]: %i\n", x,y,feld[x][y]);
+			//printf("[%i, %i]: %i\n", x,y,feld[x][y]);
 			if(feld[x][y] == spieler){
 				count++;
-			}else{
+			}else if(count != 0){
 				break;
 			}
 		}
@@ -55,6 +54,24 @@ int gewonnen(unsigned int spieler){
 			return 1;
 		}
 	}
+	//check der x Zeilen
+	for(int y = 0; y < Y; y++){		
+		int count = 0;	
+		for(int x = 0; x < X; x++){
+			//printf("[%i, %i]: %i\n", x,y,feld[x][y]);
+			if(feld[x][y] == spieler){
+				count++;
+			}else if(count != 0){
+				break;
+			}
+		}
+		if(count >= 4){
+			return 1;
+		}
+	}
+	
+	//check der Diagonalen
+	
 	
 	return 0;
 }
