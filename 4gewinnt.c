@@ -84,8 +84,3 @@ void feld_ausgabe(){
 		printf("\n");
 	}
 }
-
-
-int spieler{
-    
-}
