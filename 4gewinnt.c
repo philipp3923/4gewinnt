@@ -156,3 +156,10 @@ void feld_ausgabe(){
 		printf("\n");
 	}
 }
+
+//konsole löschen
+void clear(){
+    
+   system("cls")
+    
+}
