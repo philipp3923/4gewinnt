@@ -6,20 +6,28 @@
 #define s1 1
 #define s2 2
 
-unsigned int feld[X][Y] = {0}; 
+int feld[X][Y] = {0}; 
 
-int setzen(unsigned int x, unsigned int spieler);
-int gewonnen(unsigned int spieler);
+int setzen(int x, int spieler);
+int gewonnen(int spieler);
 int count_row(int x, int spieler);
 int count_column(int y, int spieler);
+int count_otherdiag(int x, int y, int spieler);
+int count_maindiag(int x, int y, int spieler);
 void feld_ausgabe();
 
 
 int main(){
-	setzen(1, s1);
-	setzen(1, s1);
-	setzen(1, s1);
-	setzen(1, s1);
+	setzen(5, s1);
+	setzen(4, s2);
+	setzen(4, s1);
+	setzen(3, s2);
+	setzen(3, s2);
+	setzen(3, s1);
+	setzen(2, s2);
+	setzen(2, s2);
+	setzen(2, s2);
+	setzen(2, s1);
 	feld_ausgabe();
 	printf("%i\n",gewonnen(s1));
 }
@@ -27,8 +35,8 @@ int main(){
 /* Setzt den Char Spieler abhaengig von x auf das Spielfeld
  * Gibt 0 zurueck fuer erfolg, 1 fuer ungueltig
  */
-int setzen(unsigned int x, unsigned int spieler){
-	if(x < X){
+int setzen(int x, int spieler){
+	if(x < X && x >= 0){
 		int y = 0;
 		while(y < Y && feld[x][y] != 0){
 				y++;
@@ -41,7 +49,7 @@ int setzen(unsigned int x, unsigned int spieler){
 	return 1;
 }
 
-int gewonnen(unsigned int spieler){
+int gewonnen(int spieler){
 	//check der y Spalten
 	for(int x = 0; x < X; x++){		
 		if(count_row(x, spieler) >= 4){
@@ -56,23 +64,31 @@ int gewonnen(unsigned int spieler){
 	}
 	
 	//check der Diagonalen
-	for(int i = 1; i < Y; i++){
+	for(int y = Y-1; y >= 0; y--){
 		int x = 0;
-		int y = i;
-		int count = 0;
-		while(y < Y && x < X){
-			if(feld[x][y] == spieler){
-				count++;
-			}else if(count != 0){
-				break;
-			}
-			y++;
-			x++;
-		}
-		if(count >= 4){
+		if(count_otherdiag(x,y,spieler) >= 4){
 			return 1;
 		}
 	}
+	for(int x = 0; x < X; x++){
+		int y = Y-1;
+		if(count_otherdiag(x,y,spieler) >= 4){
+			return 1;
+		}
+	}
+	for(int y = 0; y < Y; y++){
+		int x = 0;
+		if(count_maindiag(x,y,spieler) >= 4){
+			return 1;
+		}
+	}
+	for(int x = 0; x < X; x++){
+		int y = 0;
+		if(count_maindiag(x,y,spieler) >= 4){
+			return 1;
+		}
+	}
+	
 	
 	return 0;
 }
@@ -101,7 +117,34 @@ int count_column(int y, int spieler){
 	return count;
 }
 
+int count_maindiag(int x, int y, int spieler){
+	int count = 0;
+	while(y < Y && x < X){
+		if(feld[x][y] == spieler){
+			count++;
+		}else if(count != 0){
+			return count;
+		}
+		y++;
+		x++;
+		}
+		return count;
+}
 
+int count_otherdiag(int x, int y, int spieler){
+	int count = 0;
+	printf("x:%i, y:%i\n", x, y);
+	while(y < Y && y >= 0 && x < X){
+		if(feld[x][y] == spieler){
+			count++;
+		}else if(count != 0){
+			return count;
+		}
+		y--;
+		x++;
+		}
+	return count;
+}
 
 
 
