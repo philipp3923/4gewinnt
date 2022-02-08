@@ -5,23 +5,15 @@
 #define s1 1
 #define s2 2
 
-#define LINUX
-
-#ifdef WINDOWS
-    void clear(){
-        system("cls");
-    }
-#elifdef LINUX
-    void clear(){
-        system("clear");
-    }
+#ifdef _WIN32
+	#define CLEAR "cls"
 #else
-    void clear(){
-        
-    }
+	#define CLEAR "clear"
 #endif
 
+
 int main(){
+	clear();
     setzen(5, s1);
     setzen(4, s2);
     setzen(4, s1);
@@ -35,8 +27,6 @@ int main(){
     feld_ausgabe();
     printf("%i\n",gewonnen(s1));
     
-    clear();
-    
 }
 
 
@@ -49,3 +39,6 @@ void feld_ausgabe(){
     }
 }
 
+void clear(){    
+	system(CLEAR);
+}
