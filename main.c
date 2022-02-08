@@ -2,6 +2,7 @@
 
 
 int main(){
+<<<<<<< HEAD
 	int feld[X][Y] = {0};
 	clear();
     setzen(5, s1, feld);
@@ -16,6 +17,36 @@ int main(){
     setzen(2, s1, feld);
     feld_ausgabe(feld);
     printf("%i\n",gewonnen(s1, feld));
+=======
+    clear();
+    
+    
+    printf("---------------------------------------- \n");
+    
+    printf("********* Herzlich Willkommen ********* \n");
+    
+    printf("---------------------------------------- \n");
+    
+    printf("Drücken Sie unten auf Start um das Spiel zu starten: \n");
+    printf("***************** Start ***************** \n");
+    
+    
+    
+    
+	
+    setzen(5, s1);
+    setzen(4, s2);
+    setzen(4, s1);
+    setzen(3, s2);
+    setzen(3, s2);
+    setzen(3, s1);
+    setzen(2, s2);
+    setzen(2, s2);
+    setzen(2, s2);
+    setzen(2, s1);
+    feld_ausgabe();
+    printf("%i\n",gewonnen(s1));
+>>>>>>> 226bbf7 (anzige)
     
 }
 
