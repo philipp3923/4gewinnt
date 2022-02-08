@@ -1,13 +1,9 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include "game.h"
-
+#include "main.h"
 #define s1 1
 #define s2 2
-
-
-void feld_ausgabe();
-void clear();
 
 
 int main(){

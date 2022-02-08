@@ -16,7 +16,9 @@ game.o : game.c game.h
 
 
 	
-all: clean $(Programm) neat
+all: clean $(Programm) neat run
+
+mac: $(Programm) run
 
 clean:
 	rm $(Objektdateien) $(Programm) -f
