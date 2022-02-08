@@ -12,5 +12,5 @@
 	#define CLEAR "clear"
 #endif
 
-void feld_ausgabe();
+void feld_ausgabe(int feld[X][Y]);
 void clear();
