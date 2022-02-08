@@ -1,28 +1,19 @@
 CC = gcc -Wall -lm
 
-Objektdateien = main.o game.o
-Programm = 4gewinnt
-
-$(Programm): $(Objektdateien)
+4gewinnt: 4gewinnt.o game.o
 	$(CC) -o $@ $^
 
-
-main.o : main.c main.h
+4gewinnt.o : 4gewinnt.c
 	$(CC) -c $@ $^
 	
-game.o : game.c game.h
+game.o : game.c
 	$(CC) -c $@ $^
 
-
-
 	
-all: clean $(Programm) neat
+all: clean 4gewinnt run
 
 clean:
-	rm $(Objektdateien) $(Programm) -f
-
-neat:
-	rm $(Objektdateien) -f
+	rm *.o 4gewinnt -f
 
 run:
 	./4gewinnt
