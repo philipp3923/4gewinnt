@@ -103,7 +103,6 @@ int count_maindiag(int x, int y, int spieler, int feld[X][Y]){
 
 int count_otherdiag(int x, int y, int spieler, int feld[X][Y]){
     int count = 0;
-    printf("x:%i, y:%i\n", x, y);
     while(y < Y && y >= 0 && x < X){
         if(feld[x][y] == spieler){
             count++;
