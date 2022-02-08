@@ -11,9 +11,9 @@
     void clear(){
         system("cls");
     }
-#elif LINUX
+#elifdef LINUX
     void clear(){
-        system("clr");
+        system("clear");
     }
 #else
     void clear(){
