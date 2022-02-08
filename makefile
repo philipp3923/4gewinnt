@@ -1,6 +1,6 @@
 CC = gcc -Wall -lm
 
-Objektdateien = main.o game.o
+Objektdateien = main.o game.o enemy.o
 Programm = 4gewinnt
 
 $(Programm): $(Objektdateien)
@@ -10,6 +10,9 @@ main.o : main.c main.h
 	$(CC) -c $^
 	
 game.o : game.c game.h
+	$(CC) -c $^
+
+enemy.o : enemy.c enemy.h
 	$(CC) -c $^
 
 
