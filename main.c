@@ -2,22 +2,6 @@
 
 
 int main(){
-<<<<<<< HEAD
-	int feld[X][Y] = {0};
-	clear();
-    setzen(5, s1, feld);
-    setzen(4, s2, feld);
-    setzen(4, s1, feld);
-    setzen(3, s2, feld);
-    setzen(3, s2, feld);
-    setzen(3, s1, feld);
-    setzen(2, s2, feld);
-    setzen(2, s2, feld);
-    setzen(2, s2, feld);
-    setzen(2, s1, feld);
-    feld_ausgabe(feld);
-    printf("%i\n",gewonnen(s1, feld));
-=======
     clear();
     
     
@@ -30,24 +14,27 @@ int main(){
     printf("Drücken Sie unten auf Start um das Spiel zu starten: \n");
     printf("***************** Start ***************** \n");
     
-    
-    
-    
 	
-    setzen(5, s1);
-    setzen(4, s2);
-    setzen(4, s1);
-    setzen(3, s2);
-    setzen(3, s2);
-    setzen(3, s1);
-    setzen(2, s2);
-    setzen(2, s2);
-    setzen(2, s2);
-    setzen(2, s1);
-    feld_ausgabe();
-    printf("%i\n",gewonnen(s1));
->>>>>>> 226bbf7 (anzige)
+    int feld[X][Y] = {0};
     
+    while(!gewonnen(s1,feld) && !gewonnen(s2,feld)){
+        
+    printf("Geben Sie die X-Achse ein:");
+        scanf("%d", x);
+    setzen(x, s1, feld);
+    
+    feld_ausgabe(feld);
+        
+    printf("Der Computer spielt: \n");
+    setzen(move(feld), s2, feld);
+        
+    feld_ausgabe(feld);
+        
+    }
+    
+
+    printf("%i\n",gewonnen(spieler, feld));
+
 }
 
 
