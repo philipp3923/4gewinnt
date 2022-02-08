@@ -5,7 +5,7 @@
 #define s1 1
 #define s2 2
 
-#LINUX
+#define LINUX
 
 #ifdef WINDOWS
     void clear(){
@@ -49,9 +49,3 @@ void feld_ausgabe(){
     }
 }
 
-//konsole loeschen
-void clear(){
-    
-   system("cls");
-    
-}
