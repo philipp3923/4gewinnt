@@ -54,6 +54,8 @@ int main(){
     clear();
     
     if (gewonnen(s1,feld)==1) {
+        printf("\n");
+        printf("\n");
         feld_ausgabe(feld);
         printf("\n");
         printf("\n");
@@ -62,6 +64,8 @@ int main(){
         printf("**************************************************** \n");
         printf("\n");
     } else {
+        printf("\n");
+        printf("\n");
         feld_ausgabe(feld);
         printf("\n");
         printf("\n");
