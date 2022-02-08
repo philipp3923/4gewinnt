@@ -2,6 +2,10 @@
 
 
 int main(){
+
+    int x;
+    int spieler;
+    
     clear();
     
     
@@ -33,7 +37,7 @@ int main(){
     }
     
 
-    printf("%i\n",gewonnen(spieler, feld));
+//    printf("%i\n",gewonnen(spieler, feld));
 
 }
 
