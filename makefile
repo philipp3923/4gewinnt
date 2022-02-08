@@ -18,11 +18,11 @@ all: clean $(Programm) neat run
 
 mac: $(Programm) run
 
-clean:
-	rm $(Objektdateien) $(Programm) -f
-
 neat:
-	rm $(Objektdateien) -f
+	rm $(Objektdateien) *.gch -f
+
+clean:
+	rm $(Objektdateien) *.gch $(Programm) -f
 
 run:
 	./4gewinnt
