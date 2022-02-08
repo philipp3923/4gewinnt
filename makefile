@@ -11,7 +11,7 @@ main.o : main.c main.h
 	$(CC) -c $@ $^
 	
 game.o : game.c game.h
-	$(CC) -c $@ $^
+	$(CC) -c $^
 
 
 
