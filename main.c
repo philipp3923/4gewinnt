@@ -5,6 +5,21 @@
 #define s1 1
 #define s2 2
 
+#LINUX
+
+#ifdef WINDOWS
+    void clear(){
+        system("cls");
+    }
+#elif LINUX
+    void clear(){
+        system("clr");
+    }
+#else
+    void clear(){
+        
+    }
+#endif
 
 int main(){
     setzen(5, s1);
