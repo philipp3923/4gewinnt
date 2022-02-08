@@ -1,42 +1,76 @@
 #include "main.h"
 
-
 int main(){
 
     int x = 0;
+    unsigned char c1;
     
     clear();
     
     
-    printf("---------------------------------------- \n");
+    printf("\n");
+    printf("\n");
     
+    printf("---------------------------------------- \n");
+    printf("\n");
     printf("********* Herzlich Willkommen ********* \n");
-    
+    printf("\n");
     printf("---------------------------------------- \n");
     
-    printf("Drücken Sie unten auf Start um das Spiel zu starten: \n");
-    printf("***************** Start ***************** \n");
+    printf("Drücken Sie Enter um das Spiel zu starten: \n");
+    printf("\n");
+    printf("***************** Drücken Sie Enter ***************** \n");
+    c1=getchar();
+    clear();
     
-	
     int feld[X][Y] = {0};
-    
+    void unten();
+        
     while(!gewonnen(s1,feld) && !gewonnen(s2,feld)){
         
     printf("Geben Sie die X-Achse ein:");
         scanf("%d", &x);
-    setzen(x, s1, feld);
-    
-    feld_ausgabe(feld);
+        do {
+            if((x<0)||(x>6)){
+                printf("Geben Sie eine Zahl zwischen 0 und 7 ein! \n");
+                scanf("%d", &x);
+            }
+        } while ((x<0)||(x>6));
         
+        setzen(x, s1, feld);
+    
+        clear();
+
     printf("Der Computer spielt: \n");
     setzen(move(feld), s2, feld);
         
+    printf("\n");
+    printf("\n");
     feld_ausgabe(feld);
-        
+    printf("\n");
+    printf("\n");
     }
     
-
-//    printf("%i\n",gewonnen(spieler, feld));
+    clear();
+    
+    if (gewonnen(s1,feld)==1) {
+        feld_ausgabe(feld);
+        printf("\n");
+        printf("\n");
+        printf("**************************************************** \n");
+        printf("***************** Du hast GEWONNEN ***************** \n");
+        printf("**************************************************** \n");
+        printf("\n");
+    } else {
+        feld_ausgabe(feld);
+        printf("\n");
+        printf("\n");
+        printf("**************************************************** \n");
+        printf("************ Der Computer hat gewonnen ************* \n");
+        printf("**************************************************** \n");
+        printf("\n");
+        
+    }
 
 }
 
@@ -49,6 +83,7 @@ void feld_ausgabe(int feld[X][Y]){
         printf("\n");
     }
 }
+
 
 void clear(){    
 	system(CLEAR);
