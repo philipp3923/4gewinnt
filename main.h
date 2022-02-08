@@ -3,8 +3,6 @@
 #include "game.h"
 #include "enemy.h"
 
-#define s1 1
-#define s2 2
 
 #ifdef _WIN32
 	#define CLEAR "cls"
