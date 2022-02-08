@@ -14,13 +14,13 @@ int main(){
     setzen(2, s2, feld);
     setzen(2, s2, feld);
     setzen(2, s1, feld);
-    feld_ausgabe();
+    feld_ausgabe(feld);
     printf("%i\n",gewonnen(s1, feld));
     
 }
 
 
-void feld_ausgabe(int feld[X][Y)){
+void feld_ausgabe(int feld[X][Y]){
     for(int y = Y-1; y >= 0; y--){
         for(int x = 0; x < X; x++){
             printf("%i ", feld[x][y]);

@@ -2,7 +2,7 @@
 
 int testfeld[X][Y] = {0};
 
-int move(){
+int move(int feld[X][Y]){
 	copyfeld(feld, testfeld);
 	
 	for(int i = 0; i < X; i++){
