@@ -3,8 +3,7 @@
 
 int main(){
 
-    int x;
-    int spieler;
+    int x = 0;
     
     clear();
     
@@ -24,7 +23,7 @@ int main(){
     while(!gewonnen(s1,feld) && !gewonnen(s2,feld)){
         
     printf("Geben Sie die X-Achse ein:");
-        scanf("%d", x);
+        scanf("%d", &x);
     setzen(x, s1, feld);
     
     feld_ausgabe(feld);
