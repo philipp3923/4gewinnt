@@ -31,11 +31,11 @@ int main(){
     printf("Geben Sie die X-Achse ein:");
         scanf("%d", &x);
         do {
-            if((x<0)||(x>6)){
-                printf("Geben Sie eine Zahl zwischen 0 und 7 ein! \n");
+            if((x<1)||(x>6)){
+                printf("Geben Sie eine Zahl zwischen 1 und 6 ein! \n");
                 scanf("%d", &x);
             }
-        } while ((x<0)||(x>6));
+        } while ((x<1)||(x>6));
         
         setzen(x, s1, feld);
     
@@ -81,7 +81,7 @@ int main(){
 
 void feld_ausgabe(int feld[X][Y]){
     for(int y = Y-1; y >= 0; y--){
-        for(int x = 0; x < X; x++){
+        for(int x = 1; x < X; x++){
             printf("%i ", feld[x][y]);
         }
         printf("\n");

@@ -21,7 +21,7 @@ int setzen(int x, int spieler, int feld[X][Y]){
 
 int gewonnen(int spieler, int feld[X][Y]){
     //check der y Spalten
-    for(int x = 0; x < X; x++){
+    for(int x = 1; x < X; x++){
         if(count_row(x, spieler, feld) >= 4){
             return 1;
         }
@@ -40,19 +40,19 @@ int gewonnen(int spieler, int feld[X][Y]){
             return 1;
         }
     }
-    for(int x = 0; x < X; x++){
+    for(int x = 1; x < X; x++){
         int y = Y-1;
         if(count_otherdiag(x,y,spieler, feld) >= 4){
             return 1;
         }
     }
     for(int y = 0; y < Y; y++){
-        int x = 0;
+        int x = 1;
         if(count_maindiag(x,y,spieler, feld) >= 4){
             return 1;
         }
     }
-    for(int x = 0; x < X; x++){
+    for(int x = 1; x < X; x++){
         int y = 0;
         if(count_maindiag(x,y,spieler, feld) >= 4){
             return 1;
@@ -77,7 +77,7 @@ int count_row(int x, int spieler, int feld[X][Y]){
 
 int count_column(int y, int spieler, int feld[X][Y]){
     int count = 0;
-    for(int x = 0; x < X; x++){
+    for(int x = 1; x < X; x++){
         if(feld[x][y] == spieler){
             count++;
         }else if(count != 0){
