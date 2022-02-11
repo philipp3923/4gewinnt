@@ -1,5 +1,7 @@
 #include "main.h"
 
+
+
 int main(){
 
     int x = 0;
@@ -27,26 +29,22 @@ int main(){
     void unten();
         
     while(!gewonnen(s1,feld) && !gewonnen(s2,feld)){
-        
-    printf("Geben Sie die X-Achse ein:");
-        scanf("%d", &x);
-        do {
-            if((x<1)||(x>6)){
-                printf("Geben Sie eine Zahl zwischen 1 und 6 ein! \n");
+        do{
+                printf("Zusetzende Reihe (zwischen 1 und 7): \n");
                 scanf("%d", &x);
-            }
-        } while ((x<1)||(x>6));
-        
-        setzen(x, s1, feld);
+        }while(setzen(x-1, s1, feld));
     
         clear();
 
-    printf("Der Computer spielt: \n");
-    setzen(move(feld), s2, feld);
-        
+    {
+		int m = move(feld);
+		printf("Der Computer setzt in Reihe: %i\n", m+1);
+		setzen(m, s2, feld);
+    } 
+       
     printf("\n");
     printf("\n");
-    feld_ausgabe(feld);
+    spielfeld(feld);
     printf("\n");
     printf("\n");
     }
@@ -56,7 +54,7 @@ int main(){
     if (gewonnen(s1,feld)==1) {
         printf("\n");
         printf("\n");
-        feld_ausgabe(feld);
+        spielfeld(feld);
         printf("\n");
         printf("\n");
         printf("**************************************************** \n");
@@ -66,7 +64,7 @@ int main(){
     } else {
         printf("\n");
         printf("\n");
-        feld_ausgabe(feld);
+        spielfeld(feld);
         printf("\n");
         printf("\n");
         printf("**************************************************** \n");
@@ -76,19 +74,4 @@ int main(){
         
     }
 
-}
-
-
-void feld_ausgabe(int feld[X][Y]){
-    for(int y = Y-1; y >= 0; y--){
-        for(int x = 1; x < X; x++){
-            printf("%i ", feld[x][y]);
-        }
-        printf("\n");
-    }
-}
-
-
-void clear(){    
-	system(CLEAR);
 }

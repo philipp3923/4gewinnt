@@ -1,4 +1,5 @@
 #include "game.h"
+#include "ausgabe.h"
 
 #define s1 1
 #define s2 2

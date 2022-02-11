@@ -18,6 +18,7 @@ int move(int feld[X][Y]){
 		for(int j = 0; j < X; j++){
 			setzen(j, s2, testfeld);
 			if(gewonnen(s1, testfeld)){
+				printf("Verloren durch\n\ts1: %i\n\ts2: %i\n",j,i);
 				f++;
 			}
 			setzen(j, 0, testfeld);
