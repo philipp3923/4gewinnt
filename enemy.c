@@ -9,26 +9,24 @@ int move(int feld[X][Y]){
 		if(gewonnen(s2, testfeld)){
 			return i;
 		}
-		setzen(i, 0, testfeld);
+		copyfeld(feld, testfeld);
 	}
 	
 	for(int i = 0; i < X; i++){
-		setzen(i, s2, testfeld);
-		int f = 0;
-		for(int j = 0; j < X; j++){
-			setzen(j, s2, testfeld);
-			if(gewonnen(s1, testfeld)){
-				printf("Verloren durch\n\ts1: %i\n\ts2: %i\n",j,i);
-				f++;
-			}
-			setzen(j, 0, testfeld);
-		}
-		if(f == 0){
+		setzen(i, s1, testfeld);
+		if(gewonnen(s1, testfeld)){
 			return i;
 		}
-		setzen(i, 0, testfeld);
+		copyfeld(feld, testfeld);
 	}
-	return 0;
+	
+	for(int i = 0; i < X; i++){
+		if(!setzen(i, s1, testfeld)){
+			return i;
+		}
+	}
+	
+	return -1;
 }
 
 void copyfeld(int f1[X][Y], int f2[X][Y]){
