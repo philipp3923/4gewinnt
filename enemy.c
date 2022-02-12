@@ -12,16 +12,34 @@ int move(int feld[X][Y]){
 		copyfeld(feld, testfeld);
 	}
 	
+	
+	
 	for(int i = 0; i < X; i++){
 		setzen(i, s1, testfeld);
-		if(gewonnen(s1, testfeld)){
-			return i;
+		for(int j = 0; j < X; j++){
+			int testfeld2[X][Y] = {0};
+			copyfeld(testfeld, testfeld2);
+			setzen(j, s2, testfeld2);
+			for(int k = 0; k < X; k++){
+				int testfeld3[X][Y] = {0};
+				copyfeld(testfeld2, testfeld3);
+				setzen(k, s1, testfeld3);
+				if(gewonnen(s1, testfeld3)){
+					return k;
+				}
+				copyfeld(testfeld2, testfeld3);
+			}
+			copyfeld(testfeld, testfeld2);
 		}
 		copyfeld(feld, testfeld);
 	}
 	
+	
+	
+	
 	for(int i = 0; i < X; i++){
 		if(!setzen(i, s1, testfeld)){
+			//printf("Random gesetzt!!!\n");
 			return i;
 		}
 	}
