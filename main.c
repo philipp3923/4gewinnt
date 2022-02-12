@@ -48,7 +48,6 @@ int main(){
 			return 0;
 		}
 		int m = move(feld);
-		printf("Der Computer setzt in Reihe: %i\n", m+1);
 		setzen(m, s2, feld);
        
 		printf("\n");
