@@ -22,13 +22,13 @@ int setzen(int x, int spieler, int feld[X][Y]){
 int gewonnen(int spieler, int feld[X][Y]){
     //check der y Spalten
     for(int x = 0; x < X; x++){
-        if(count_row(x, spieler, feld)){
+        if(count_column(x, spieler, feld)){
             return 1;
         }
     }
     //check der x Zeilen
     for(int y = 0; y < Y; y++){
-        if(count_column(y, spieler, feld)){
+        if(count_row(y, spieler, feld)){
             return 1;
         }
     }
@@ -63,31 +63,31 @@ int gewonnen(int spieler, int feld[X][Y]){
     return 0;
 }
 
-int count_row(int x, int spieler, int feld[X][Y]){
+int count_column(int x, int spieler, int feld[X][Y]){
     int count = 0;
     for(int y = 0; y < Y; y++){
         if(feld[x][y] == spieler){
             count++;
-        }else if(count >= 4){
-			return 1;
-		}else{
+        }else{
             count = 0;
-        }
+        }if(count >= 4){
+			return 1;
+		}
     }
     return 0;
 }
 
-int count_column(int y, int spieler, int feld[X][Y]){
+int count_row(int y, int spieler, int feld[X][Y]){
     int count = 0;
     for(int x = 0; x < X; x++){
         if(feld[x][y] == spieler){
             count++;
-        }
-        else if(count >= 4){
-			return 1;
-		}else{
+            
+        }else{
             count = 0;
-        }
+        }if(count >= 4){
+			return 1;
+		}
     }
     return 0;
 }
@@ -97,11 +97,11 @@ int count_maindiag(int x, int y, int spieler, int feld[X][Y]){
     while(y < Y && x < X){
         if(feld[x][y] == spieler){
             count++;
-        }else if(count >= 4){
-			return 1;
-		}else{
+        }else{
             count = 0;
-        }
+        }if(count >= 4){
+			return 1;
+		}
         y++;
         x++;
         }
@@ -113,11 +113,11 @@ int count_otherdiag(int x, int y, int spieler, int feld[X][Y]){
     while(y < Y && y >= 0 && x < X){
         if(feld[x][y] == spieler){
             count++;
-        }else if(count >= 4){
-			return 1;
-		}else{
+        }else{
             count = 0;
-        }
+        }if(count >= 4){
+			return 1;
+		}
         y--;
         x++;
         }

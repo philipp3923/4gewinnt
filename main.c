@@ -41,7 +41,10 @@ int main(){
 		if(gewonnen(s1, feld)){
 			printf("\n");
 			printf("\n");
-			printf("Computer hat gewonnen.\n");
+			spielfeld(feld);
+			printf("\n");
+			printf("\n");
+			printf("Sie haben gewonnen.\n");
 			return 0;
 		}
 		int m = move(feld);
@@ -55,6 +58,6 @@ int main(){
 		printf("\n");
     }
     
-    printf("Sie haben gewonnen.\n");
+    printf("Computer hat gewonnen.\n");
 	return 0;
 }

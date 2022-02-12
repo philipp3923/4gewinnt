@@ -26,6 +26,9 @@ int move(int feld[X][Y]){
 		}
 	}
 	
+	
+	
+	
 	return -1;
 }
 
