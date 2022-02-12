@@ -40,7 +40,7 @@ int gewonnen(int spieler, int feld[X][Y]){
             return 1;
         }
     }
-    for(int x = 1; x < X; x++){
+    for(int x = 0; x < X; x++){
         int y = Y-1;
         if(count_otherdiag(x,y,spieler, feld)){
             return 1;
@@ -52,7 +52,7 @@ int gewonnen(int spieler, int feld[X][Y]){
             return 1;
         }
     }
-    for(int x = 1; x < X; x++){
+    for(int x = 0; x < X; x++){
         int y = 0;
         if(count_maindiag(x,y,spieler, feld)){
             return 1;
