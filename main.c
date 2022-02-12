@@ -33,7 +33,9 @@ int main(){
                 printf("Zusetzende Reihe (zwischen 1 und 7): \n");
                 scanf("%d", &x);
         }while(setzen(x-1, s1, feld));
-    
+        
+        gewonnen(s1,feld);
+        
         clear();
 
     {
