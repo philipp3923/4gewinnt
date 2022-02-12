@@ -4,65 +4,31 @@ int move(int feld[X][Y]){
 	int testfeld[X][Y] = {0};
 	copyfeld(feld, testfeld);
 	
-	for(int i = 0; i < X; i++){
-		setzen(i, s2, testfeld);
-		if(gewonnen(s2, testfeld)){
-			printf("Gewinn im nächsten Zug. Reihe: %i\n", i);
-			return i;
-		}
-		copyfeld(feld, testfeld);
+	
+	int test = win1turn(s2, feld, testfeld);
+	if(test != -1){
+		printf("Gewinn im nächsten Zug. Reihe: %i\n", test+1);
+		return test;
 	}
 	
-	for(int i = 0; i < X; i++){
-		setzen(i, s1, testfeld);
-		if(gewonnen(s1, testfeld)){
-			printf("Verloren im nächsten Zug. Reihe: %i\n", i);
-			return i;
-		}
-		copyfeld(feld, testfeld);
+	test = win1turn(s1, feld, testfeld);
+	if(test != -1){
+		printf("Verloren im nächsten Zug. Reihe: %i\n", test+1);
+		return test;
 	}
 	
-	for(int i = 0; i < X; i++){
-		setzen(i, s1, testfeld);
-		for(int j = 0; j < X; j++){
-			int testfeld2[X][Y] = {0};
-			copyfeld(testfeld, testfeld2);
-			setzen(j, s2, testfeld2);
-			for(int k = 0; k < X; k++){
-				int testfeld3[X][Y] = {0};
-				copyfeld(testfeld2, testfeld3);
-				setzen(k, s1, testfeld3);
-				if(gewonnen(s1, testfeld3)){
-					printf("Verloren in 2 Zügen. Reihe: %i\n", k);
-					return k;
-				}
-				copyfeld(testfeld2, testfeld3);
-			}
-			copyfeld(testfeld, testfeld2);
-		}
-		copyfeld(feld, testfeld);
+	test = win2turn(s1, s2, feld, testfeld);
+	if(test != -1){
+		printf("Verloren in 2 Zügen. Reihe: %i\n", test+1);
+		return test;
 	}
 	
-	for(int i = 0; i < X; i++){
-		setzen(i, s2, testfeld);
-		for(int j = 0; j < X; j++){
-			int testfeld2[X][Y] = {0};
-			copyfeld(testfeld, testfeld2);
-			setzen(j, s1, testfeld2);
-			for(int k = 0; k < X; k++){
-				int testfeld3[X][Y] = {0};
-				copyfeld(testfeld2, testfeld3);
-				setzen(k, s2, testfeld3);
-				if(gewonnen(s2, testfeld3)){
-					printf("Gewinn in 2 Zügen. Reihe: %i\n", i);
-					return i;
-				}
-				copyfeld(testfeld2, testfeld3);
-			}
-			copyfeld(testfeld, testfeld2);
-		}
-		copyfeld(feld, testfeld);
+	test = win2turn(s2, s1, feld, testfeld);
+	if(test != -1){
+		printf("Gewinn in 2 Zügen. Reihe: %i\n", test+1);
+		return test;
 	}
+	
 	
 	//#TODO für KI Version 5: Falls keine 2 auf dem Feld: setze in die Mitte, sonst setzte in ein feld daneben.
 	
@@ -78,6 +44,40 @@ int move(int feld[X][Y]){
 	
 	
 	
+	return test;
+}
+
+int win1turn(int player,int feld[X][Y], int testfeld[X][Y]){
+	for(int i = 0; i < X; i++){
+		setzen(i, player, testfeld);
+		if(gewonnen(player, testfeld)){
+			return i;
+		}
+		copyfeld(feld, testfeld);
+	}
+	return -1;
+}
+
+int win2turn(int player, int enemy,int feld[X][Y], int testfeld[X][Y]){
+	for(int i = 0; i < X; i++){
+		setzen(i, player, testfeld);
+		for(int j = 0; j < X; j++){
+			int testfeld2[X][Y] = {0};
+			copyfeld(testfeld, testfeld2);
+			setzen(j, enemy, testfeld2);
+			for(int k = 0; k < X; k++){
+				int testfeld3[X][Y] = {0};
+				copyfeld(testfeld2, testfeld3);
+				setzen(k, player, testfeld3);
+				if(gewonnen(player, testfeld3)){
+					return i;
+				}
+				copyfeld(testfeld2, testfeld3);
+			}
+			copyfeld(testfeld, testfeld2);
+		}
+		copyfeld(feld, testfeld);
+	}
 	return -1;
 }
 
