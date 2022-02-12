@@ -19,8 +19,7 @@ int main(){
     printf("\n");
     printf("********** Drücken Sie Enter **********\n");
     
-    char c1;
-    c1=getchar();
+    getchar();
     clear();
     
     printf("\n");
