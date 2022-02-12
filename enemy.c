@@ -32,11 +32,38 @@ int move(int feld[X][Y]){
 	
 	//#TODO für KI Version 5: Falls keine 2 auf dem Feld: setze in die Mitte, sonst setzte in ein feld daneben.
 	
+	int c = 0;
 	
+	for(int x = 0; x < X; x++){
+		for(int y = 0; y < Y; y++){
+			if(testfeld[x][y] == s2){
+				c++;
+				if(x < X-1 && testfeld[x+1][y] == 0){
+					printf("Zug rechts: %i\n", x+2);
+					return x+1;
+				}
+				if(x > 0 && testfeld[x-1][y] == 0 ){
+					printf("Zug links. Reihe: %i\n", x);
+					return x-1;
+				}
+			}
+		}
+	}
 	
-	for(int i = X/2; i < X; i++){
+	if(c == 0){
+		if(testfeld[3][0] == 0){
+			printf("Erster Zug. Reihe: 4\n");
+			return 3;
+		}else{
+			
+			printf("Erster Zug. Reihe: 5\n");
+			return 4;
+		}
+	}
+	
+	for(int i = 0; i < X; i++){
 		if(!setzen(i, s1, testfeld)){
-			printf("Random gesetzt\n");
+			printf("Untaktischer Zug. Reihe: %i\n", i);
 			return i;
 		}
 	}

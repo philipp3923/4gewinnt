@@ -1,5 +1,3 @@
-#include <stdlib.h>
-#include <stdio.h>
 #include "game.h"
 
 /* Setzt den Char Spieler abhaengig von x auf das Spielfeld
@@ -20,13 +18,13 @@ int setzen(int x, int spieler, int feld[X][Y]){
 }
 
 int gewonnen(int spieler, int feld[X][Y]){
-    //check der y Spalten
+    //check der Spalten
     for(int x = 0; x < X; x++){
         if(count_column(x, spieler, feld)){
             return 1;
         }
     }
-    //check der x Zeilen
+    //check der Zeilen
     for(int y = 0; y < Y; y++){
         if(count_row(y, spieler, feld)){
             return 1;

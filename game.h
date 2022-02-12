@@ -1,5 +1,8 @@
+#include <stdlib.h>
+#include <stdio.h>
 #define X 7
 #define Y 6
+
 
 int setzen(int x, int spieler, int feld[X][Y]);
 int gewonnen(int spieler, int feld[X][Y]);
