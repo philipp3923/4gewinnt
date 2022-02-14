@@ -1,5 +1,6 @@
-#include <stdlib.h>
-#include <stdio.h>
+#ifndef GAME_H
+#define GAME_H
+
 #define X 7
 #define Y 6
 
@@ -12,3 +13,4 @@ int count_column(int y, int spieler, int feld[X][Y]);
 int count_otherdiag(int x, int y, int spieler, int feld[X][Y]);
 int count_maindiag(int x, int y, int spieler, int feld[X][Y]);
 
+#endif

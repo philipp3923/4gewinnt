@@ -1,5 +1,6 @@
-#include <stdlib.h>
-#include <stdio.h>
+#ifndef AUSGABE_H
+#define AUSGABE_H
+
 #include "game.h"
 
 #ifdef _WIN32
@@ -10,3 +11,5 @@
 
 void spielfeld(int feld[X][Y]);
 void clear();
+
+#endif

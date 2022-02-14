@@ -1,3 +1,6 @@
+#include <stdlib.h>
+#include <stdio.h>
+
 #include "ausgabe.h"
 
 void spielfeld(int feld[X][Y]){

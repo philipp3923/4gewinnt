@@ -1,3 +1,6 @@
+#include <stdlib.h>
+#include <stdio.h>
+
 #include "game.h"
 
 /* Setzt den Char Spieler abhaengig von x auf das Spielfeld
