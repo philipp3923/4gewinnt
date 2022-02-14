@@ -1,9 +1,6 @@
 #include "main.h"
 
-
-
 int main(){
-
 
 	int feld[X][Y] = {0};
     
