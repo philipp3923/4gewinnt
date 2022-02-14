@@ -10,6 +10,7 @@
 #endif
 
 void spielfeld(int feld[X][Y]);
+void spielfeld_h(int feld[X][Y], int hx, int hy);
 void clear();
 
 #endif

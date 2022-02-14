@@ -20,6 +20,17 @@ int setzen(int x, int spieler, int feld[X][Y]){
     return 1;
 }
 
+int highestelement(int x, int feld[X][Y]){
+	int y = 0;
+    while(y < Y && feld[x][y] != 0){
+		y++;
+    }
+    if(feld[x][y] == 0){
+		return y-1;
+	}
+	return y;
+}
+
 int gewonnen(int spieler, int feld[X][Y]){
     //check der Spalten
     for(int x = 0; x < X; x++){

@@ -6,6 +6,7 @@
 
 
 int setzen(int x, int spieler, int feld[X][Y]);
+int highestelement(int x, int feld[X][Y]);
 int gewonnen(int spieler, int feld[X][Y]);
 
 int count_row(int x, int spieler, int feld[X][Y]);
