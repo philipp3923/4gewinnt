@@ -7,31 +7,37 @@ int move(int feld[X][Y]){
 	
 	int test = win1turn(s2, feld, testfeld);
 	if(test != -1){
+		#if DEBUG
 		printf("Gewinn im nächsten Zug. Reihe: %i\n", test+1);
+		#endif
 		return test;
 	}
 	
 	test = win1turn(s1, feld, testfeld);
 	if(test != -1){
+		#if DEBUG
 		printf("Verloren im nächsten Zug. Reihe: %i\n", test+1);
+		#endif
 		return test;
 	}
 	
 	test = win2turn(s1, s2, feld, testfeld);
 	if(test != -1){
+		#if DEBUG
 		printf("Verloren in 2 Zügen. Reihe: %i\n", test+1);
+		#endif
 		return test;
 	}
 	
 	test = win2turn(s2, s1, feld, testfeld);
 	if(test != -1){
+		#if DEBUG
 		printf("Gewinn in 2 Zügen. Reihe: %i\n", test+1);
+		#endif
 		return test;
 	}
 	
-	
-	//#TODO für KI Version 5: Falls keine 2 auf dem Feld: setze in die Mitte, sonst setzte in ein feld daneben.
-	
+		
 	int c = 0;
 	
 	for(int x = 0; x < X; x++){
@@ -39,11 +45,15 @@ int move(int feld[X][Y]){
 			if(testfeld[x][y] == s2){
 				c++;
 				if(x < X-1 && testfeld[x+1][y] == 0){
+					#if DEBUG
 					printf("Zug rechts: %i\n", x+2);
+					#endif
 					return x+1;
 				}
 				if(x > 0 && testfeld[x-1][y] == 0 ){
+					#if DEBUG
 					printf("Zug links. Reihe: %i\n", x);
+					#endif
 					return x-1;
 				}
 			}
@@ -52,18 +62,23 @@ int move(int feld[X][Y]){
 	
 	if(c == 0){
 		if(testfeld[3][0] == 0){
+			#if DEBUG
 			printf("Erster Zug. Reihe: 4\n");
+			#endif
 			return 3;
 		}else{
-			
+			#if DEBUG
 			printf("Erster Zug. Reihe: 5\n");
+			#endif
 			return 4;
 		}
 	}
 	
 	for(int i = 0; i < X; i++){
 		if(!setzen(i, s1, testfeld)){
+			#if DEBUG
 			printf("Untaktischer Zug. Reihe: %i\n", i);
+			#endif
 			return i;
 		}
 	}

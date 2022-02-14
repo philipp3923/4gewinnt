@@ -11,13 +11,9 @@ int main(){
     printf("********* Herzlich Willkommen *********\n");
     printf("\n");
     printf("---------------------------------------\n");
-    
-    printf("        P R E S S    E N T E R\n");
     printf("\n");
-    printf("********** Drücken Sie Enter **********\n");
-    
-    getchar();
-	clear();
+    printf("********* V I E L  S P A S S **********\n");
+    printf("\n");
 	
     while(!gewonnen(s2,feld)){
         

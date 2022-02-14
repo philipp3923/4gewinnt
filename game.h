@@ -3,7 +3,18 @@
 
 #define X 7
 #define Y 6
+#define PLAYER 1
+#define ENEMY 2
+#define DEBUG 0
+#define VIS_PLAYER 'P'
+#define VIS_ENEMY 'G'
+#define VIS_EMPTY '.'
+#define VIS_ERROR '!'
 
+
+
+#define s1 PLAYER
+#define s2 ENEMY
 
 int setzen(int x, int spieler, int feld[X][Y]);
 int highestelement(int x, int feld[X][Y]);
