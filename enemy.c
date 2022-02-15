@@ -22,18 +22,38 @@ int winzturn(int player, int enemy, int z, int feld[X][Y]){
 	
 	int test = winturn(enemy, feld);
 	if(test != -1){
+		#if DEBUG
+		printf("WINTURN %i\n",z);
+		#endif
 		return test;
 	}
 	
 	test = winturn(player, feld);
 	if(test != -1){
+		#if DEBUG
+		printf("LOOSETURN %i\n",z);
+		#endif
 		return test;
 	}
 	
+	int t1feld[X][Y] = {0};
+	int t2feld[X][Y] = {0};
+	
 	for(int i = 0; i < X; i++){
-		test = winzturn(player, enemy, z-1, feld);
-		if(test != -1){
-			return test;
+		copyfeld(feld, t1feld);
+		if(!setzen(i, enemy, t1feld)){
+			for(int j = 0; j < X; j++){
+				copyfeld(t1feld, t2feld);
+				if(!setzen(j, player, t2feld)){
+					test = winzturn(player, enemy, z-1, t2feld);
+					copyfeld(t1feld, t2feld);
+					setzen(test, enemy, t2feld);
+					setzen(test, player, t2feld);
+					if(test != -1 && !gewonnen(player, t2feld)){
+						return test;
+					}
+				}
+			}
 		}
 	}
 	
@@ -59,6 +79,7 @@ int winturn(int enemy, int feld[X][Y]){
 		}
 	}	
 	
+	return -1;
 }
 
 int randturn(int player, int enemy, int feld[X][Y]){
