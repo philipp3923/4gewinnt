@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 
 #include "enemy.h"
 
@@ -51,9 +52,13 @@ int winzturn(int player, int enemy, int z, int feld[X][Y]){
 				copyfeld(t1feld, t2feld);
 				if(!setzen(j, player, t2feld)){
 					test = winzturn(player, enemy, z-1, t2feld);
-					copyfeld(t1feld, t2feld);
+					copyfeld(feld, t2feld);
 					setzen(test, enemy, t2feld);
 					if(test != -1 && winturn(player, t2feld) == -1){
+						#if DEBUG
+						printf("ERLAUBT\n");
+						spielfeld_h(t2feld, test, highestelement(test, t2feld));
+						#endif
 						tx[test]++;
 					}
 				}
@@ -62,10 +67,17 @@ int winzturn(int player, int enemy, int z, int feld[X][Y]){
 	}
 	
 	for(int i = 0; i < X; i++){
+		#if DEBUG
+		printf("%i ", tx[i]);
+		#endif
 		if(tx[i] > tx[test]){
 			test = i;
 		}
 	}
+	
+	#if DEBUG
+	printf(" E%i\n", z);
+	#endif
 	
 	return test;
 }
@@ -82,7 +94,7 @@ int winturn(int enemy, int feld[X][Y]){
 			//Enemy gewinnt an i
 			if(gewonnen(enemy, t1feld)){
 				#if DEBUG
-				spielfeld_h(t1feld, i, highestelement(i, t1feld));
+				//spielfeld_h(t1feld, i, highestelement(i, t1feld));
 				#endif
 				return i;
 			}
@@ -93,49 +105,17 @@ int winturn(int enemy, int feld[X][Y]){
 }
 
 int randturn(int player, int enemy, int feld[X][Y]){
-	int c = 0;
+	int c = rand() % X;
 	
 	int t1feld[X][Y] = {0};
 	copyfeld(feld, t1feld);
 	
-	for(int x = 0; x < X; x++){
-		if(highestelement(x, t1feld) == enemy){
-			c++;
-			if(!setzen(x+1, enemy, t1feld)){
-				#if DEBUG
-				printf("UNTAKTISCH 1\n");
-				#endif
-				return x+1;
-			}
-			if(!setzen(x-1, enemy, t1feld)){
-				#if DEBUG
-				printf("UNTAKTISCH 1\n");
-				#endif
-				return x-1;
-			}
-		}
-	}
-	
-	if(c == 0){
-		if(!setzen(3, enemy, t1feld) && feld[3][0] == 0){
-			#if DEBUG
-			printf("UNTAKTISCH 2\n");
-			#endif
-			return 3;
-		}else if(!setzen(4, enemy, t1feld)){
-			#if DEBUG
-			printf("UNTAKTISCH 2\n");
-			#endif
-			return 4;
-		}
-	}
-	
-	for(int i = 0; i < X; i++){
-		if(!setzen(i, enemy, t1feld)){
+	for(int i = c; i < X+c; i++){
+		if(!setzen(i%X, enemy, t1feld) && winturn(player, t1feld) == -1){
 			#if DEBUG
 			printf("UNTAKTISCH 3\n");
 			#endif
-			return i;
+			return i%X;
 		}
 	}
 	

@@ -5,7 +5,11 @@
 
 int main(){
 	
+	int feld[X][Y] = {0};
+    int difficulty = 3;
+	
 	#if DEBUG
+	printf("DEBUG MODE\n");
 	int dfeld[X][Y] = {
 		{0, 1, 0, 0, 0, 0},
 		{0, 0, 1, 0, 0, 0},
@@ -16,16 +20,26 @@ int main(){
 		{0, 0, 0, 0, 0, 0}
 	};
 	
+	int feld1[X][Y] = {
+		{1, 1, 2, 2, 1, 0},
+		{1, 2, 1, 2, 0, 0},
+		{1, 2, 0, 0, 0, 0},
+		{2, 2, 2, 1, 1, 0},
+		{1, 1, 2, 2, 2, 1},
+		{0, 0, 0, 0, 0, 0},
+		{0, 0, 0, 0, 0, 0}
+	};
+	
+	copyfeld(feld1, feld);
+	
 	printf("Gewonnen: %i\n", gewonnen(1,dfeld));
 	spielfeld(dfeld);
 	#endif
-	
-	int feld[X][Y] = {0};
-    int difficulty = 0;
     
     #if !(DEBUG)
     clear();
     #endif
+
     
     printf("---------------------------------------\n");
     printf("\n");

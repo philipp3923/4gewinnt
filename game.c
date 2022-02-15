@@ -8,11 +8,8 @@
  */
 int setzen(int x, int spieler, int feld[X][Y]){
     if(x < X && x >= 0){
-        int y = 0;
-        while(y < Y && feld[x][y] != 0){
-                y++;
-        }
-        if(feld[x][y] == 0){
+        int y = highestelement(x, feld)+1;
+        if(y < Y){
             feld[x][y] = spieler;
             return 0;
         }
@@ -25,7 +22,9 @@ int highestelement(int x, int feld[X][Y]){
     while(y < Y && feld[x][y] != 0){
 		y++;
     }
-    
+    if(y==Y){
+		return y;
+	}
 	return y-1;
 }
 
