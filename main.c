@@ -1,4 +1,7 @@
+#include <stdio.h>
+
 #include "main.h"
+
 
 int main(){
 
@@ -23,7 +26,10 @@ int main(){
 			scanf("%d", &x);
         }while(setzen(--x, s1, feld));
         
+        #if !(DEBUG)
         clear();
+        #endif
+        
         printf("Spieler setzt in Reihe: %i", x+1);
         printf("\n");
 		printf("\n");

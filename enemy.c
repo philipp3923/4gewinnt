@@ -1,87 +1,21 @@
+#include <stdio.h>
+
 #include "enemy.h"
 
 int move(int feld[X][Y]){
-	int testfeld[X][Y] = {0};
-	copyfeld(feld, testfeld);
+	int difficulty = 3;
+	int test = -1;
 	
-	
-	int test = win1turn(s2, feld, testfeld);
+	test = winzturn(PLAYER, ENEMY, difficulty, feld);
 	if(test != -1){
-		#if DEBUG
-		printf("Gewinn im nächsten Zug. Reihe: %i\n", test+1);
-		#endif
 		return test;
 	}
 	
-	test = win1turn(s1, feld, testfeld);
+	test = randturn(PLAYER, ENEMY, feld);
 	if(test != -1){
-		#if DEBUG
-		printf("Verloren im nächsten Zug. Reihe: %i\n", test+1);
-		#endif
 		return test;
 	}
-	
-	test = win2turn(s1, s2, feld, testfeld);
-	if(test != -1){
-		#if DEBUG
-		printf("Verloren in 2 Zügen. Reihe: %i\n", test+1);
-		#endif
-		return test;
-	}
-	
-	test = win2turn(s2, s1, feld, testfeld);
-	if(test != -1){
-		#if DEBUG
-		printf("Gewinn in 2 Zügen. Reihe: %i\n", test+1);
-		#endif
-		return test;
-	}
-	
-		
-	int c = 0;
-	
-	for(int x = 0; x < X; x++){
-		for(int y = 0; y < Y; y++){
-			if(testfeld[x][y] == s2){
-				c++;
-				if(x < X-1 && testfeld[x+1][y] == 0){
-					#if DEBUG
-					printf("Zug rechts: %i\n", x+2);
-					#endif
-					return x+1;
-				}
-				if(x > 0 && testfeld[x-1][y] == 0 ){
-					#if DEBUG
-					printf("Zug links. Reihe: %i\n", x);
-					#endif
-					return x-1;
-				}
-			}
-		}
-	}
-	
-	if(c == 0){
-		if(testfeld[3][0] == 0){
-			#if DEBUG
-			printf("Erster Zug. Reihe: 4\n");
-			#endif
-			return 3;
-		}else{
-			#if DEBUG
-			printf("Erster Zug. Reihe: 5\n");
-			#endif
-			return 4;
-		}
-	}
-	
-	for(int i = 0; i < X; i++){
-		if(!setzen(i, s1, testfeld)){
-			#if DEBUG
-			printf("Untaktischer Zug. Reihe: %i\n", i);
-			#endif
-			return i;
-		}
-	}
+
 	
 	
 	
@@ -89,37 +23,109 @@ int move(int feld[X][Y]){
 	return test;
 }
 
-int win1turn(int player,int feld[X][Y], int testfeld[X][Y]){
+int winzturn(int player, int enemy, int z, int feld[X][Y]){
+	if(z <= 0){
+		return -1;
+	}
+		
+	int t1feld[X][Y] = {0};
+	
 	for(int i = 0; i < X; i++){
-		setzen(i, player, testfeld);
-		if(gewonnen(player, testfeld)){
-			return i;
+		//frisches Ausgangsfeld intialisieren
+		copyfeld(feld, t1feld);
+		
+		//Enemy setzen an i erfolgreich
+		if(!setzen(i, enemy, t1feld)){
+			
+			//Enemy gewinnt an i
+			if(gewonnen(enemy, t1feld)){
+				
+				#if DEBUG
+				printf("GEWONNEN %i\n", z);
+				spielfeld_h(t1feld, i, highestelement(i, t1feld));
+				#endif
+				
+				return i;
+			}
 		}
-		copyfeld(feld, testfeld);
+	}
+	
+	for(int i = 0; i < X; i++){
+	
+		//frisches Feld mit Zug von Enemy an i initialisieren
+		copyfeld(feld, t1feld);
+	
+		//Spieler an j setzten erfolgreich
+		if(!setzen(i, player, t1feld)){
+			
+			//Spieler setzt an andere Stelle als Enemy und Spieler gewinnt
+			if(gewonnen(player, t1feld)){	
+				#if DEBUG
+				printf("VERLOREN %i\n", z);
+				spielfeld_h(t1feld, i, highestelement(i, t1feld));
+				#endif
+				
+				return i; 
+				
+			}else{
+				int win = winzturn(player, enemy, z-1, t1feld);
+				if(win != -1){
+					return win;
+				}
+			}
+		}
 	}
 	return -1;
 }
 
-int win2turn(int player, int enemy,int feld[X][Y], int testfeld[X][Y]){
-	for(int i = 0; i < X; i++){
-		setzen(i, player, testfeld);
-		for(int j = 0; j < X; j++){
-			int testfeld2[X][Y] = {0};
-			copyfeld(testfeld, testfeld2);
-			setzen(j, enemy, testfeld2);
-			for(int k = 0; k < X; k++){
-				int testfeld3[X][Y] = {0};
-				copyfeld(testfeld2, testfeld3);
-				setzen(k, player, testfeld3);
-				if(gewonnen(player, testfeld3)){
-					return i;
-				}
-				copyfeld(testfeld2, testfeld3);
+
+int randturn(int player, int enemy, int feld[X][Y]){
+	int c = 0;
+	
+	int t1feld[X][Y] = {0};
+	copyfeld(feld, t1feld);
+	
+	for(int x = 0; x < X; x++){
+		if(highestelement(x, t1feld) == enemy){
+			c++;
+			if(!setzen(x+1, enemy, t1feld)){
+				#if DEBUG
+				printf("UNTAKTISCH 1\n");
+				#endif
+				return x+1;
 			}
-			copyfeld(testfeld, testfeld2);
+			if(!setzen(x-1, enemy, t1feld)){
+				#if DEBUG
+				printf("UNTAKTISCH 1\n");
+				#endif
+				return x-1;
+			}
 		}
-		copyfeld(feld, testfeld);
 	}
+	
+	if(c == 0){
+		if(feld[3][0] == 0){
+			#if DEBUG
+			printf("UNTAKTISCH 2\n");
+			#endif
+			return 3;
+		}else{
+			#if DEBUG
+			printf("UNTAKTISCH 2\n");
+			#endif
+			return 4;
+		}
+	}
+	
+	for(int i = 0; i < X; i++){
+		if(!setzen(i, s1, t1feld)){
+			#if DEBUG
+			printf("UNTAKTISCH 3\n");
+			#endif
+			return i;
+		}
+	}
+	
 	return -1;
 }
 
