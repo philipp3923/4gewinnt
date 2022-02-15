@@ -25,7 +25,7 @@ int winzturn(int player, int enemy, int z, int feld[X][Y]){
 	int test = winturn(enemy, feld);
 	if(test != -1){
 		#if DEBUG
-		printf("WINTURN %i\n",z);
+		//printf("WINTURN %i\n",z);
 		#endif
 		return test;
 	}
@@ -33,7 +33,7 @@ int winzturn(int player, int enemy, int z, int feld[X][Y]){
 	test = winturn(player, feld);
 	if(test != -1){
 		#if DEBUG
-		printf("LOOSETURN %i\n",z);
+		//printf("LOOSETURN %i\n",z);
 		#endif
 		return test;
 	}
@@ -56,8 +56,8 @@ int winzturn(int player, int enemy, int z, int feld[X][Y]){
 					setzen(test, enemy, t2feld);
 					if(test != -1 && winturn(player, t2feld) == -1){
 						#if DEBUG
-						printf("ERLAUBT\n");
-						spielfeld_h(t2feld, test, highestelement(test, t2feld));
+						//printf("ERLAUBT\n");
+						//spielfeld_h(t2feld, test, highestelement(test, t2feld));
 						#endif
 						tx[test]++;
 					}
@@ -68,7 +68,9 @@ int winzturn(int player, int enemy, int z, int feld[X][Y]){
 	
 	for(int i = 0; i < X; i++){
 		#if DEBUG
-		printf("%i ", tx[i]);
+		if(z ==3){
+			printf(" %i ", tx[i]);
+		}
 		#endif
 		if(tx[i] > tx[test]){
 			test = i;
@@ -76,7 +78,9 @@ int winzturn(int player, int enemy, int z, int feld[X][Y]){
 	}
 	
 	#if DEBUG
-	printf(" E%i\n", z);
+	if(z == 3){
+		printf(" E%i\n", z);
+	}
 	#endif
 	
 	return test;

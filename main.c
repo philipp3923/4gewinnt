@@ -30,10 +30,10 @@ int main(){
 		{0, 0, 0, 0, 0, 0}
 	};
 	
-	copyfeld(feld1, feld);
+	//copyfeld(feld1, feld);
 	
-	printf("Gewonnen: %i\n", gewonnen(1,dfeld));
-	spielfeld(dfeld);
+	//printf("Gewonnen: %i\n", gewonnen(1,dfeld));
+	//spielfeld(dfeld);
 	#endif
     
     #if !(DEBUG)
