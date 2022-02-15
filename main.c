@@ -29,7 +29,7 @@ int main(){
     
     printf("---------------------------------------\n");
     printf("\n");
-    printf("********* Herzlich Willkommen *********\n");
+    printf("+++++++++++++ Vier Gewinnt ++++++++++++\n");
     printf("\n");
     printf("---------------------------------------\n");
     printf("\n");
