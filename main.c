@@ -6,6 +6,7 @@
 int main(){
 
 	int feld[X][Y] = {0};
+    int difficulty = 3;
     
     clear();
     
@@ -17,7 +18,6 @@ int main(){
     printf("\n");
     printf("********* V I E L  S P A S S **********\n");
     printf("\n");
-    
 	
     while(!gewonnen(s2,feld)){
         
@@ -47,8 +47,8 @@ int main(){
 			printf("Sie haben gewonnen.\n");
 			return 0;
 		}
-		x = move(feld);
-		setzen(PLAYER, ENEMY, difficulty, feld);
+		x = move(PLAYER, ENEMY, difficulty, feld);
+		setzen(x, s2, feld);
        
         printf("Gegner setzt in Reihe: %i", x+1);
 		printf("\n");

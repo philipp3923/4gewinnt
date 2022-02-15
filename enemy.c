@@ -5,16 +5,20 @@
 int move(int player, int enemy, int difficulty, int feld[X][Y]){
 	int test = -1;
 	
-	test = winzturn(PLAYER, ENEMY, difficulty, feld);
+	test = winzturn(player, enemy, difficulty, feld);
 	if(test != -1){
 		return test;
 	}
 	
-	test = randturn(PLAYER, ENEMY, feld);
+	test = randturn(player, enemy, feld);
 	if(test != -1){
 		return test;
 	}
 
+	
+	
+	
+	
 	return test;
 }
 
