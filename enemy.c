@@ -6,6 +6,7 @@ int move(int player, int enemy, int difficulty, int feld[X][Y]){
 	int test = -1;
 	
 	test = winzturn(player, enemy, difficulty, feld);
+	test%=10;
 	if(test != -1){
 		return test;
 	}
@@ -25,7 +26,7 @@ int winzturn(int player, int enemy, int z, int feld[X][Y]){
 		#if DEBUG
 		printf("WINTURN %i\n",z);
 		#endif
-		return test;
+		return test + z*10;
 	}
 	
 	test = winturn(player, feld);
@@ -33,11 +34,13 @@ int winzturn(int player, int enemy, int z, int feld[X][Y]){
 		#if DEBUG
 		printf("LOOSETURN %i\n",z);
 		#endif
-		return test;
+		return test + z*10;
 	}
 	
 	int t1feld[X][Y] = {0};
 	int t2feld[X][Y] = {0};
+	
+	int tx[X] = {0};
 	
 	for(int i = 0; i < X; i++){
 		copyfeld(feld, t1feld);
@@ -45,12 +48,11 @@ int winzturn(int player, int enemy, int z, int feld[X][Y]){
 			for(int j = 0; j < X; j++){
 				copyfeld(t1feld, t2feld);
 				if(!setzen(j, player, t2feld)){
-					test = winzturn(player, enemy, z-1, t2feld);
+					int newtest = winzturn(player, enemy, z-1, t2feld);
 					copyfeld(t1feld, t2feld);
-					setzen(test, enemy, t2feld);
-					setzen(test, player, t2feld);
-					if(test != -1 && !gewonnen(player, t2feld)){
-						return test;
+					setzen(test%10, enemy, t2feld);
+					if(newtest/10 > test/10 && newtest%10 != -1 && winturn(player, t2feld) == -1){
+						test = newtest;
 					}
 				}
 			}
