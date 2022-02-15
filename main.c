@@ -4,11 +4,28 @@
 
 
 int main(){
-
+	
+	#if DEBUG
+	int dfeld[X][Y] = {
+		{0, 1, 0, 0, 0, 0},
+		{0, 0, 1, 0, 0, 0},
+		{0, 0, 0, 1, 0, 0},
+		{0, 0, 0, 0, 1, 0},
+		{0, 0, 0, 0, 0, 0},
+		{0, 0, 0, 0, 0, 0},
+		{0, 0, 0, 0, 0, 0}
+	};
+	
+	printf("Gewonnen: %i\n", gewonnen(1,dfeld));
+	spielfeld(dfeld);
+	#endif
+	
 	int feld[X][Y] = {0};
     int difficulty = 0;
     
+    #if !(DEBUG)
     clear();
+    #endif
     
     printf("---------------------------------------\n");
     printf("\n");
