@@ -11,13 +11,6 @@ int move(int player, int enemy, int difficulty, int feld[X][Y]){
 	}
 	
 	test = randturn(player, enemy, feld);
-	if(test != -1){
-		return test;
-	}
-
-	
-	
-	
 	
 	return test;
 }
