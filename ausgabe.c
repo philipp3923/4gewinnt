@@ -6,7 +6,8 @@
 void spielfeld(int feld[X][Y]){
     for(int y = Y-1; y >= 0; y--){
         for(int x = 0; x < X; x++){
-            printf(" %c ", intToVisual(feld[x][y]));
+            printf(" %s%c%s ", intToColor(feld[x][y]), intToVisual(feld[x][y]), intToColor(0));
+            
         }
         printf("\n");
     }
@@ -21,7 +22,7 @@ void spielfeld_h(int feld[X][Y], int hx, int hy){
             if(hx == x && hy == y){
                 printf("%s[%c]%s", intToColor(feld[x][y]), intToVisual(feld[x][y]), intToColor(0));
             }else{
-                printf(" %c ", intToVisual(feld[x][y]));
+                printf(" %s%c%s ", intToColor(feld[x][y]), intToVisual(feld[x][y]), intToColor(0));
             }
         }
         printf("\n");
