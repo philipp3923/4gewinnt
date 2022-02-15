@@ -6,6 +6,7 @@ int move(int player, int enemy, int difficulty, int feld[X][Y]){
 	int test = -1;
 	
 	test = winzturn(player, enemy, difficulty, feld);
+	test%=10;
 	if(test != -1){
 		return test;
 	}
@@ -19,9 +20,58 @@ int winzturn(int player, int enemy, int z, int feld[X][Y]){
 	if(z <= 0){
 		return -1;
 	}
-		
-	int t1feld[X][Y] = {0};
 	
+	int test = winturn(enemy, feld);
+	if(test != -1){
+		#if DEBUG
+		printf("WINTURN %i\n",z);
+		#endif
+		return test;
+	}
+	
+	test = winturn(player, feld);
+	if(test != -1){
+		#if DEBUG
+		printf("LOOSETURN %i\n",z);
+		#endif
+		return test;
+	}
+	
+	
+	
+	int t1feld[X][Y] = {0};
+	int t2feld[X][Y] = {0};
+	
+	int tx[X] = {0};
+	
+	for(int i = 0; i < X; i++){
+		copyfeld(feld, t1feld);
+		if(!setzen(i, enemy, t1feld)){
+			for(int j = 0; j < X; j++){
+				copyfeld(t1feld, t2feld);
+				if(!setzen(j, player, t2feld)){
+					test = winzturn(player, enemy, z-1, t2feld);
+					copyfeld(t1feld, t2feld);
+					setzen(test, enemy, t2feld);
+					if(test != -1 && winturn(player, t2feld) == -1){
+						tx[test]++;
+					}
+				}
+			}
+		}
+	}
+	
+	for(int i = 0; i < X; i++){
+		if(tx[i] > tx[test]){
+			test = i;
+		}
+	}
+	
+	return test;
+}
+
+int winturn(int enemy, int feld[X][Y]){
+	int t1feld[X][Y] = {0};
 	for(int i = 0; i < X; i++){
 		//frisches Ausgangsfeld intialisieren
 		copyfeld(feld, t1feld);
@@ -31,45 +81,16 @@ int winzturn(int player, int enemy, int z, int feld[X][Y]){
 			
 			//Enemy gewinnt an i
 			if(gewonnen(enemy, t1feld)){
-				
 				#if DEBUG
-				printf("GEWONNEN %i\n", z);
 				spielfeld_h(t1feld, i, highestelement(i, t1feld));
 				#endif
-				
 				return i;
 			}
 		}
-	}
+	}	
 	
-	for(int i = 0; i < X; i++){
-	
-		//frisches Feld mit Zug von Enemy an i initialisieren
-		copyfeld(feld, t1feld);
-	
-		//Spieler an j setzten erfolgreich
-		if(!setzen(i, player, t1feld)){
-			
-			//Spieler setzt an andere Stelle als Enemy und Spieler gewinnt
-			if(gewonnen(player, t1feld)){	
-				#if DEBUG
-				printf("VERLOREN %i\n", z);
-				spielfeld_h(t1feld, i, highestelement(i, t1feld));
-				#endif
-				
-				return i; 
-				
-			}else{
-				int win = winzturn(player, enemy, z-1, t1feld);
-				if(win != -1){
-					return win;
-				}
-			}
-		}
-	}
 	return -1;
 }
-
 
 int randturn(int player, int enemy, int feld[X][Y]){
 	int c = 0;
@@ -96,12 +117,12 @@ int randturn(int player, int enemy, int feld[X][Y]){
 	}
 	
 	if(c == 0){
-		if(feld[3][0] == 0){
+		if(!setzen(3, enemy, t1feld) && feld[3][0] == 0){
 			#if DEBUG
 			printf("UNTAKTISCH 2\n");
 			#endif
 			return 3;
-		}else{
+		}else if(!setzen(4, enemy, t1feld)){
 			#if DEBUG
 			printf("UNTAKTISCH 2\n");
 			#endif
@@ -110,7 +131,7 @@ int randturn(int player, int enemy, int feld[X][Y]){
 	}
 	
 	for(int i = 0; i < X; i++){
-		if(!setzen(i, s1, t1feld)){
+		if(!setzen(i, enemy, t1feld)){
 			#if DEBUG
 			printf("UNTAKTISCH 3\n");
 			#endif

@@ -25,10 +25,8 @@ int highestelement(int x, int feld[X][Y]){
     while(y < Y && feld[x][y] != 0){
 		y++;
     }
-    if(feld[x][y] == 0){
-		return y-1;
-	}
-	return y;
+    
+	return y-1;
 }
 
 int gewonnen(int spieler, int feld[X][Y]){
@@ -59,7 +57,7 @@ int gewonnen(int spieler, int feld[X][Y]){
         }
     }
     for(int y = 0; y < Y; y++){
-        int x = 1;
+        int x = 0;
         if(count_maindiag(x,y,spieler, feld)){
             return 1;
         }
