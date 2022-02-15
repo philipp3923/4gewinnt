@@ -17,6 +17,7 @@ int main(){
     printf("\n");
     printf("********* V I E L  S P A S S **********\n");
     printf("\n");
+    
 	
     while(!gewonnen(s2,feld)){
         
@@ -47,7 +48,7 @@ int main(){
 			return 0;
 		}
 		x = move(feld);
-		setzen(x, s2, feld);
+		setzen(PLAYER, ENEMY, difficulty, feld);
        
         printf("Gegner setzt in Reihe: %i", x+1);
 		printf("\n");

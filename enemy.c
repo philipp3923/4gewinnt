@@ -2,8 +2,7 @@
 
 #include "enemy.h"
 
-int move(int feld[X][Y]){
-	int difficulty = 3;
+int move(int player, int enemy, int difficulty, int feld[X][Y]){
 	int test = -1;
 	
 	test = winzturn(PLAYER, ENEMY, difficulty, feld);
@@ -16,10 +15,6 @@ int move(int feld[X][Y]){
 		return test;
 	}
 
-	
-	
-	
-	
 	return test;
 }
 
