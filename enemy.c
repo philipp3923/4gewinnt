@@ -26,7 +26,7 @@ int winzturn(int player, int enemy, int z, int feld[X][Y]){
 		#if DEBUG
 		printf("WINTURN %i\n",z);
 		#endif
-		return test + z*10;
+		return test;
 	}
 	
 	test = winturn(player, feld);
@@ -34,8 +34,10 @@ int winzturn(int player, int enemy, int z, int feld[X][Y]){
 		#if DEBUG
 		printf("LOOSETURN %i\n",z);
 		#endif
-		return test + z*10;
+		return test;
 	}
+	
+	
 	
 	int t1feld[X][Y] = {0};
 	int t2feld[X][Y] = {0};
@@ -48,14 +50,20 @@ int winzturn(int player, int enemy, int z, int feld[X][Y]){
 			for(int j = 0; j < X; j++){
 				copyfeld(t1feld, t2feld);
 				if(!setzen(j, player, t2feld)){
-					int newtest = winzturn(player, enemy, z-1, t2feld);
+					test = winzturn(player, enemy, z-1, t2feld);
 					copyfeld(t1feld, t2feld);
-					setzen(test%10, enemy, t2feld);
-					if(newtest/10 > test/10 && newtest%10 != -1 && winturn(player, t2feld) == -1){
-						test = newtest;
+					setzen(test, enemy, t2feld);
+					if(test != -1 && winturn(player, t2feld) == -1){
+						tx[test]++;
 					}
 				}
 			}
+		}
+	}
+	
+	for(int i = 0; i < X; i++){
+		if(tx[i] > tx[test]){
+			test = i;
 		}
 	}
 	
@@ -109,12 +117,12 @@ int randturn(int player, int enemy, int feld[X][Y]){
 	}
 	
 	if(c == 0){
-		if(feld[3][0] == 0){
+		if(!setzen(3, enemy, t1feld) && feld[3][0] == 0){
 			#if DEBUG
 			printf("UNTAKTISCH 2\n");
 			#endif
 			return 3;
-		}else{
+		}else if(!setzen(4, enemy, t1feld)){
 			#if DEBUG
 			printf("UNTAKTISCH 2\n");
 			#endif
@@ -123,7 +131,7 @@ int randturn(int player, int enemy, int feld[X][Y]){
 	}
 	
 	for(int i = 0; i < X; i++){
-		if(!setzen(i, s1, t1feld)){
+		if(!setzen(i, enemy, t1feld)){
 			#if DEBUG
 			printf("UNTAKTISCH 3\n");
 			#endif

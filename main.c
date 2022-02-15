@@ -6,7 +6,7 @@
 int main(){
 
 	int feld[X][Y] = {0};
-    int difficulty = 3;
+    int difficulty = 0;
     
     clear();
     
