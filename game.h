@@ -11,7 +11,9 @@
 #define VIS_EMPTY '.'
 #define VIS_ERROR '!'
 
-
+#define RED    "\x1b[31m"
+#define BLUE    "\x1b[34m"
+#define RESET   "\x1b[0m"
 
 #define s1 PLAYER
 #define s2 ENEMY

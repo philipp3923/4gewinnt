@@ -16,13 +16,19 @@ void spielfeld(int feld[X][Y]){
 
 
 void spielfeld_h(int feld[X][Y], int hx, int hy){
-	for(int y = Y-1; y >= 0; y--){
+    for(int y = Y-1; y >= 0; y--){
         for(int x = 0; x < X; x++){
-			if(hx == x && hy == y){
-				printf("[%c]", intToVisual(feld[x][y]));
-			}else{
-				printf(" %c ", intToVisual(feld[x][y]));
-			}
+            if(hx == x && hy == y){
+                if (color(feld[x][y])) {
+                    printf(BLUE "[%c]" RESET, intToVisual(feld[x][y]));
+                } else if(!color(feld[x][y])){
+                    printf(RED "[%c]" RESET, intToVisual(feld[x][y]));
+                }else{
+                    printf("[%c]" RESET, intToVisual(feld[x][y]));
+                }
+            }else{
+                printf(" %c ", intToVisual(feld[x][y]));
+            }
         }
         printf("\n");
     }
@@ -36,6 +42,14 @@ char intToVisual(int f){
 		case 0: return VIS_EMPTY;
 		default: return VIS_ERROR;
 	}
+}
+
+int color(int z){
+    switch (z) {
+        case PLAYER: return 1;
+        case ENEMY: return 0;
+        default: return VIS_ERROR;
+}
 }
 
 void lastrow(){
