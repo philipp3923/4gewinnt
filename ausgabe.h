@@ -12,7 +12,7 @@
 void spielfeld(int feld[X][Y]);
 void spielfeld_h(int feld[X][Y], int hx, int hy);
 char intToVisual(int f);
-int color(int z);
+char* intToColor(int z);
 void lastrow();
 void clear();
 
