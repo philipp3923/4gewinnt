@@ -19,7 +19,8 @@ void spielfeld_h(int feld[X][Y], int hx, int hy){
     for(int y = Y-1; y >= 0; y--){
         for(int x = 0; x < X; x++){
             if(hx == x && hy == y){
-                printf("%s[%c]%s", intToColor(feld[x][y]), COL_DEFAULT, intToVisual(feld[x][y]));
+				printf("%s", intToColor(feld[x][y]));
+               // printf("%s[%c]%s", intToColor(feld[x][y]), COL_DEFAULT, intToVisual(feld[x][y]));
             }else{
                 printf(" %c ", intToVisual(feld[x][y]));
             }
