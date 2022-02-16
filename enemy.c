@@ -113,9 +113,9 @@ int randturn(int player, int enemy, int feld[X][Y]){
 	int c = rand() % X;
 	
 	int t1feld[X][Y] = {0};
-	copyfeld(feld, t1feld);
 	
 	for(int i = c; i < X+c; i++){
+		copyfeld(feld, t1feld);
 		printf("%i ", i%X);
 		if(!setzen(i%X, enemy, t1feld) && winturn(player, t1feld) == -1){
 			#if DEBUG
@@ -123,7 +123,7 @@ int randturn(int player, int enemy, int feld[X][Y]){
 			#endif
 			return i%X;
 		}
-		spielfeld(t1feld);
+		//spielfeld(t1feld);
 	}
 	
 	return -1;
