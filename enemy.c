@@ -117,14 +117,29 @@ int randturn(int player, int enemy, int feld[X][Y]){
 	int t1feld[X][Y] = {0};
 	
 	for(int i = c; i < X+c; i++){
+		#if DEBUG
+		printf("R%i ", i%X); 
+		#endif
 		copyfeld(feld, t1feld);
 		if(!setzen(i%X, enemy, t1feld) && winturn(player, t1feld) == -1){
 			#if DEBUG
-			printf("UNTAKTISCH 3\n");
+			printf("KEIN VERLUST\n");
 			#endif
 			return i%X;
 		}
-		//spielfeld(t1feld);
+	}
+	
+	for(int i = c; i < X+c; i++){
+		#if DEBUG
+		printf("R%i ", i%X); 
+		#endif
+		copyfeld(feld, t1feld);
+		if(!setzen(i%X, enemy, t1feld)){
+			#if DEBUG
+			printf("VERLUST\n");
+			#endif
+			return i%X;
+		}
 	}
 	
 	return -1;
