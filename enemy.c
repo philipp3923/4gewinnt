@@ -14,6 +14,7 @@ int move(int player, int enemy, int difficulty, int feld[X][Y]){
 	
 	test = randturn(player, enemy, feld);
 	
+	printf("HALLO! %i\n", test);
 	return test;
 }
 
@@ -25,7 +26,7 @@ int winzturn(int player, int enemy, int z, int feld[X][Y]){
 	int test = winturn(enemy, feld);
 	if(test != -1){
 		#if DEBUG
-		//printf("WINTURN %i\n",z);
+		printf("WINTURN %i\n",z);
 		#endif
 		return test;
 	}
@@ -33,7 +34,7 @@ int winzturn(int player, int enemy, int z, int feld[X][Y]){
 	test = winturn(player, feld);
 	if(test != -1){
 		#if DEBUG
-		//printf("LOOSETURN %i\n",z);
+		printf("LOOSETURN %i\n",z);
 		#endif
 		return test;
 	}
@@ -115,12 +116,14 @@ int randturn(int player, int enemy, int feld[X][Y]){
 	copyfeld(feld, t1feld);
 	
 	for(int i = c; i < X+c; i++){
+		printf("%i ", i%X);
 		if(!setzen(i%X, enemy, t1feld) && winturn(player, t1feld) == -1){
 			#if DEBUG
 			printf("UNTAKTISCH 3\n");
 			#endif
 			return i%X;
 		}
+		spielfeld(t1feld);
 	}
 	
 	return -1;

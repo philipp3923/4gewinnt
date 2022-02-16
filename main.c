@@ -6,7 +6,7 @@
 int main(){
 	
 	int feld[X][Y] = {0};
-    int difficulty = 3;
+    int difficulty = 1;
 	
 	#if DEBUG
 	printf("DEBUG MODE\n");
