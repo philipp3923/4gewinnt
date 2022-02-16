@@ -5,7 +5,7 @@
 #define Y 6
 #define PLAYER 1
 #define ENEMY 2
-#define DEBUG 0
+#define DEBUG 1
 
 #define VIS_PLAYER 'P'
 #define VIS_ENEMY 'G'
