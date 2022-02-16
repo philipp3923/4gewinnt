@@ -74,7 +74,7 @@ int winzturn(int player, int enemy, int z, int feld[X][Y]){
 			printf(" %i ", tx[i]);
 		}
 		#endif
-		if((test == -1 && tx[i] > 0)|| tx[i] > tx[test]){
+		if((test == -1 && tx[i] > 0) || (test != -1 && tx[i] > tx[test])){
 			test = i;
 		}
 	}
