@@ -18,14 +18,14 @@ int setzen(int x, int spieler, int feld[X][Y]){
 }
 
 int highestelement(int x, int feld[X][Y]){
-	int y = 0;
-    while(y < Y && feld[x][y] != 0){
-		y++;
-    }
-    if(y==Y){
-		return y;
+	if(x < X && x >= 0){
+		int y = 0;
+		while(y < Y && feld[x][y] != 0){
+			y++;
+		}
+		return y-1;
 	}
-	return y-1;
+	return Y;
 }
 
 int gewonnen(int spieler, int feld[X][Y]){
