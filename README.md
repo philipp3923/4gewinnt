@@ -13,9 +13,9 @@ Nun wird so weiter gespielt bis ein gewinner feststeht oder das Spielfeld voll i
 
 ### Download:
 
-Wenn Sie das Spiel spielen wollen dann downloaden Sie das repositorium. Nachdem Sie es gedownloadet haben ziehen Sie sich die Dokumente raus und beginnen Sie zu spielen.
+Wenn Sie das Spiel spielen wollen dann downloaden Sie das Repository. Nachdem Sie es gedownloadet haben ziehen Sie sich die Dokumente raus und beginnen Sie zu spielen.
 
-(Ansonsten können Sie das repositorium im Terminal downloaden mit `git clone https://github.com/philipp3923/4gewinnt.git`. Nachdem das Repositorium geclont wurde gehen Sie mit `cd 4gewinnt/`ind den Ordner. Wenn Sie nun in dem Ordner sind können Sie das Spiel mit dem Befehl `make all`für Linux oder `make mac`für MacBook starten.)
+(Ansonsten können Sie das Repository im Terminal downloaden mit `git clone https://github.com/philipp3923/4gewinnt.git`. Nachdem das Repository geclont wurde gehen Sie mit `cd 4gewinnt/` in den Ordner. Wenn Sie nun in dem Ordner sind können Sie das Spiel mit dem Befehl `make all` um es in Linux zu starten oder `make mac` um es beim MacBook zu starten.)
 
 
 
