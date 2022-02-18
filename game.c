@@ -132,3 +132,12 @@ int count_otherdiag(int x, int y, int spieler, int feld[X][Y]){
         }
     return 0;
 }
+
+int voll(int feld[X][Y]){
+	for(int i = 0; i < X; i++){
+		if(feld[i][Y-1] == 0){
+			return 0;
+		}
+	}
+	return 1;
+}
