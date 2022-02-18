@@ -1,6 +1,6 @@
-# Spiel 4 gewinnt
+# 4gewinnt für das Terminal
 
-### Beschreibung:
+## Beschreibung
 
 Ein klassisches 4 gewinnt Spiel für das Terminal, wo der Spieler gegen einen selbst programmierten Computer antritt.  
 
@@ -11,11 +11,22 @@ Das obere Spielfeld zeigt wo der Spieler seinen Stein gesetzt hat und das untere
 Die Steine fallen wie beim echten 4 gewinnt Spiel von oben nach unten. Dabei ist der Stein des Spielers P und blau markiert und der des Computers G und rot markiert.
 Nun wird so weiter gespielt bis ein Gewinner feststeht oder das Spielfeld voll ist.
 
-### Download:
+## Anwendung
 
-Wenn Sie das Spiel spielen wollen dann downloaden Sie das Repository. Nachdem Sie es gedownloadet haben ziehen Sie sich die Dokumente raus und beginnen Sie zu spielen.
+### Download
 
-(Ansonsten können Sie das Repository im Terminal clonen mit `git clone https://github.com/philipp3923/4gewinnt.git`. Nachdem das Repository geclont wurde gehen Sie mit `cd 4gewinnt/` in den Ordner. Wenn Sie nun in dem Ordner sind können Sie das Spiel mit dem Befehl `make all` um es in Linux zu starten oder `make mac` um es beim MacBook zu starten.)
+Laden Sie die Binärdatei oder den Sourcecode des [gewünschten Releases](https://github.com/philipp3923/4gewinnt/releases) herunter.  
 
+### Erstellen
+
+Im heruntergeladenen Verzeichnis erstellen Sie mit dem Befehl `make all` das Programm.
+
+### Ausführen
+
+Im heruntergeladenen Verzeichnis führen Sie mit dem Befehl `./4gewinnt` das Programm aus.
+
+## Kompatibilität
+
+Das Programm wurde auf Linux und MacOS getestet.
 
 
