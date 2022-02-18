@@ -7,7 +7,7 @@ Ein klassisches 4 gewinnt Spiel für das Terminal, wo der Spieler gegen einen se
 Nach start des Programmes erscheint der Willkommensbildschirm.
 Darunter steht die Aussage dass der Spieler eine Reihe zwischen eins und sieben auswählen soll um seinen Stein zu setzen.
 Nachdem der Spieler die Reihe ausgewählt hat und anschließend enter betätigt erscheinen zwei Spielfelder untereinander. 
-Das obere Spielfeld zeigt wo der Spieler seinen Stein gesetzt hat und das untere Feld wo der Cumputer gesetzt hat.
+Das obere Spielfeld zeigt wo der Spieler seinen Stein gesetzt hat und das untere Feld wo der Computer gesetzt hat.
 Die Steine fallen wie beim echten 4 gewinnt Spiel von oben nach unten. Dabei ist der Stein des Spieler P und blau markiert und der des Computer G und rot markiert.
 Nun wird so weiter gespielt bis ein Gewinner feststeht oder das Spielfeld voll ist.
 
